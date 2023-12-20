@@ -1,16 +1,16 @@
 package mowitnow.parser;
 
-import mowitnow.entites.Params.InstructionTondeuse;
-import mowitnow.entites.Params.Orientation;
+import mowitnow.entities.Params.InstructionMower;
+import mowitnow.entities.Params.Orientation;
 
 /**
  * class contenant les méthodes permettant de valider le format des lignes dans le fichier.
  * @author sgmira
  *
  */
-public class ParserDonnees {
+public class DataParser {
 
-	private ParserDonnees(){
+	private DataParser(){
 
 	}
 
@@ -21,7 +21,7 @@ public class ParserDonnees {
 	 * @param tondeuse
 	 * @return true si la ligne des positions est correcte, false sinon
 	 */
-	public static boolean parseTondeuse(String tondeuse){
+	public static boolean parseMower(String tondeuse){
 		StringBuilder stringBuilder = new StringBuilder("");
 		stringBuilder.append(Orientation.NORTH.getCodeOrientation())
 			.append("|").append(Orientation.SOUTH.getCodeOrientation())
@@ -38,9 +38,9 @@ public class ParserDonnees {
 	 */
 	public static boolean parseListInstruction(String instructions){
 		StringBuilder stringBuilder = new StringBuilder("");
-		stringBuilder.append("(").append(InstructionTondeuse.AVANCER.getCodeInstruction())
-		.append("|").append(InstructionTondeuse.DROITE.getCodeInstruction())
-		.append("|").append(InstructionTondeuse.GAUCHE.getCodeInstruction())
+		stringBuilder.append("(").append(InstructionMower.MOVE_FORWARD.getCodeInstruction())
+		.append("|").append(InstructionMower.RIGHT.getCodeInstruction())
+		.append("|").append(InstructionMower.LEFT.getCodeInstruction())
 		.append(")+");
 
 		return instructions.matches(stringBuilder.toString());
@@ -52,7 +52,7 @@ public class ParserDonnees {
 	 * @param pelouse
 	 * @return true si la ligne des instructions est correcte, false sinon
 	 */
-	public static boolean parsePelouse(String pelouse){
+	public static boolean parseLawn(String pelouse){
 		return pelouse.matches("(\\d+) (\\d+)");
 	}
 }

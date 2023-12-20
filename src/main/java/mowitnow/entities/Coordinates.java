@@ -1,11 +1,10 @@
-package mowitnow.entites;
+package mowitnow.entities;
 
-public class Coordonnees {
-	
+public class Coordinates {
 	private int x;
 	private int y;
 	
-	public Coordonnees(int pX, int pY){
+	public Coordinates(int pX, int pY){
 		this.x = pX;
 		this.y = pY;
 	}
@@ -16,7 +15,7 @@ public class Coordonnees {
 	 * @param pCoordonnees 
 	 * @return true si les coordonnées de la tondeuse sont à l'intérieur de la pelouse
 	 */
-	public boolean isHorsCoordonnesMax(Coordonnees pCoordonnees){
+	public boolean isHorsCoordonnesMax(Coordinates pCoordonnees){
 		return pCoordonnees.getX() >= 0 
 				&& pCoordonnees.getY() >= 0
 				&& pCoordonnees.getX() <= this.x
@@ -48,7 +47,7 @@ public class Coordonnees {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Coordonnees other = (Coordonnees) obj;
+		Coordinates other = (Coordinates) obj;
 		if (x != other.x || y != other.y)
 			return false;
 		

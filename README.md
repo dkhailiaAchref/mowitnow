@@ -32,9 +32,10 @@ OBJECTIF
 
 Concevoir et écrire un programme s'exécutant en java, implémentant la spécification ci-dessus et passant le test ci-après. 
 
-TEST
-
-Le fichier suivant est fourni en entrée :
+TEST Data :
+NB: Les données en entrée sont injectées sous forme de fichier.
+le fichier (src/main/resources/file.txt)  est placé pour le test :
+ce fichier avec le contenu suivant est fourni en entrée :
 5 5
 1 2 N
 GAGAGAGAA
@@ -44,3 +45,31 @@ AADAADADDA
 On attend le résultat suivant (position finale des tondeuses) :
 1 3 N
 5 1 E
+
+================================================================================
+choix Techno : 
+Applicatif : Java8 /spring-boot ( spring mvc ) 
+Doc APi: Swagger 
+Test : JUNIT /AssertJ 
+
+Test Application :
+* 1) run main Application (Application.java), is an (SpringBootApplication)
+* this starting  Root WebApplication with embeded Tomcat server
+* initialized and started on port(s): 8080 (http)
+* 
+* 2) test on EndPoint ( Get ) on Navigator : this will process the default file (./src/main/resources/file.txt)
+* http://localhost:8080/mowitnow/launch
+* 
+* or 
+* TEST by url swagger doc API : 
+* http://localhost:8080/swagger-ui/
+* point onto mowitnow-controller to obtain url below:
+* http://localhost:8080/swagger-ui/#/mowitnow-controller/launchProcessingUsingGET
+* try it out => execute 
+* 
+* 
+* 3) result
+* [
+* "1 3 N",
+* "5 1 E"
+* ]

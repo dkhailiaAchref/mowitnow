@@ -1,32 +1,32 @@
 package mowitnow.parser;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import org.junit.Test;
 
-public class ParserTondeuseTest {
+public class MowerParserTest {
 	
 	@Test
 	public void parse_tondeuse(){
-		ParserTondeuse parserTondeuse = new ParserTondeuse();
+		MowerParser parserTondeuse = new MowerParser();
 		parserTondeuse.setInstructions("DGDGA");
-		parserTondeuse.setPelouse("50 5");
-		parserTondeuse.setTondeuse("1 2 N");
+		parserTondeuse.setLawn("50 5");
+		parserTondeuse.setMower("1 2 N");
 		assertThat(parserTondeuse.executeParse()).isTrue();
 	}
 	@Test
 	
 	public void parse_tondeuse_pelouse_incorrect(){
-		ParserTondeuse parserTondeuse = new ParserTondeuse();
+		MowerParser parserTondeuse = new MowerParser();
 		parserTondeuse.setInstructions("DGDGA");
-		parserTondeuse.setPelouse("0 -1");
-		parserTondeuse.setTondeuse("1 2 N");
+		parserTondeuse.setLawn("0 -1");
+		parserTondeuse.setMower("1 2 N");
 		assertThat(parserTondeuse.executeParse()).isFalse();
 	}
 	
 	@Test
 	public void parse_tondeuse_donnees_vide(){
-		ParserTondeuse parserTondeuse = new ParserTondeuse();
+		MowerParser parserTondeuse = new MowerParser();
 		assertThat(parserTondeuse.executeParse()).isFalse();
 	}
 }

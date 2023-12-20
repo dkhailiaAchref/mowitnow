@@ -1,19 +1,19 @@
-package mowitnow.traitement;
+package mowitnow.services;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import mowitnow.entites.Coordonnees;
-import mowitnow.entites.Params.InstructionTondeuse;
-import mowitnow.entites.Params.Orientation;
-import mowitnow.entites.Pelouse;
-import mowitnow.entites.PositionTondeuse;
+import mowitnow.entities.Coordinates;
+import mowitnow.entities.Params.InstructionMower;
+import mowitnow.entities.Params.Orientation;
+import mowitnow.entities.Lawn;
+import mowitnow.entities.MowerPosition;
 
-public class FormaterLigne {
+public class LineFormatter {
 
-	private static final String CHAINE_ESPACE = " ";
+	private static final String STRING_SPACE = " ";
 
-	private FormaterLigne(){
+	private LineFormatter(){
 
 	}
 
@@ -22,11 +22,11 @@ public class FormaterLigne {
 	 * @param ligneTondeuse : ligne de la position de la tondeuse ( ex : 2 3 G)
 	 * @return l'objet qui définit la position dela tondeuse
 	 */
-	public static PositionTondeuse formaterLigneTondeuse(String ligneTondeuse){
-		String[] elts = ligneTondeuse.split(CHAINE_ESPACE);
-		Coordonnees pCoordonneesTondeuse = new Coordonnees(Integer.valueOf(elts[0]), Integer.valueOf(elts[1]));
+	public static MowerPosition formatLineMower(String ligneTondeuse){
+		String[] elts = ligneTondeuse.split(STRING_SPACE);
+		Coordinates pCoordonneesTondeuse = new Coordinates(Integer.valueOf(elts[0]), Integer.valueOf(elts[1]));
 		Orientation orientationTondeuse = getOrientation(elts[2].charAt(0));
-		return new PositionTondeuse(pCoordonneesTondeuse, orientationTondeuse);
+		return new MowerPosition(pCoordonneesTondeuse, orientationTondeuse);
 	}
 
 	/**
@@ -34,9 +34,9 @@ public class FormaterLigne {
 	 * @param lignePelouse : ligne de la pelouse ( ex : 2 3)
 	 * @return l'objet qui définit la limite de la pelouse
 	 */
-	public static Pelouse formaterLignePelouse(String lignePelouse){
-		String[] elts = lignePelouse.split(CHAINE_ESPACE);
-		return new Pelouse(new Coordonnees(Integer.valueOf(elts[0]), Integer.valueOf(elts[1])));
+	public static Lawn formatLineLawn(String lignePelouse){
+		String[] elts = lignePelouse.split(STRING_SPACE);
+		return new Lawn(new Coordinates(Integer.valueOf(elts[0]), Integer.valueOf(elts[1])));
 	}
 
 	/**
@@ -44,8 +44,8 @@ public class FormaterLigne {
 	 * @param ligneInstruction : suite d'instruction ( ex : GDAGD)
 	 * @return une liste d'enum InstrctionTondeuse
 	 */
-	public static List<InstructionTondeuse> formaterLigneInstruction(String ligneInstruction){
-		List<InstructionTondeuse> listInstruction = new ArrayList<InstructionTondeuse>();
+	public static List<InstructionMower> formatLineInstruction(String ligneInstruction){
+		List<InstructionMower> listInstruction = new ArrayList<InstructionMower>();
 		for(char instruction :ligneInstruction.toCharArray()){
 			listInstruction.add(getInstruction(instruction));
 		}
@@ -71,8 +71,8 @@ public class FormaterLigne {
 	 * @param cInstruction : caractère de l'instruction (A, G, D)
 	 * @return l'enum correspondant à l'instruction 
 	 */
-	public static InstructionTondeuse getInstruction(char cInstruction){
-		for(InstructionTondeuse instruction : InstructionTondeuse.values()) {
+	public static InstructionMower getInstruction(char cInstruction){
+		for(InstructionMower instruction : InstructionMower.values()) {
 			if (instruction.getCodeInstruction() == cInstruction) {
 				return instruction;
 			}

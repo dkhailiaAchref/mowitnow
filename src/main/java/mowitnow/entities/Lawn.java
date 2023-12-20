@@ -1,19 +1,19 @@
-package mowitnow.entites;
-public class Pelouse {
+package mowitnow.entities;
+public class Lawn {
 
-	private Coordonnees positionMax;
-	public Pelouse(){
+	private Coordinates positionMax;
+	public Lawn(){
 		
 	}
-	public Pelouse(Coordonnees pPositionMax) {
-		this.positionMax = pPositionMax;
+	public Lawn(Coordinates positionMax) {
+		this.positionMax = positionMax;
 	}
 
-	public Coordonnees getPositionMax() {
+	public Coordinates getPositionMax() {
 		return positionMax;
 	}
 
-	public void setPositionMax(Coordonnees positionMax) {
+	public void setPositionMax(Coordinates positionMax) {
 		this.positionMax = positionMax;
 	}
 	
@@ -33,7 +33,7 @@ public class Pelouse {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pelouse other = (Pelouse) obj;
+		Lawn other = (Lawn) obj;
 		if (positionMax == null) {
 			if (other.positionMax != null)
 				return false;
